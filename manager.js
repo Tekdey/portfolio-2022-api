@@ -1,7 +1,7 @@
 module.exports = class {
   constructor(body) {
     this.request = body;
-    this.authorizedKeys = ["email", "message"];
+    this.authorizedKeys = ["fullname", "description"];
     this.$object = new Object();
   }
   async check() {
@@ -13,14 +13,7 @@ module.exports = class {
           `Key unauthorized, please provide these : ${this.authorizedKeys}`
         );
       } else {
-        if (key == "message") {
-          this.#sanitizeString(key, value);
-        } else {
-          this.#_validation(key, value);
-        }
-      }
-      if (key != "message") {
-        this.$object = { ...this.$object, [key]: value };
+        this.#sanitizeString(key, value);
       }
     });
 
@@ -30,17 +23,8 @@ module.exports = class {
     if (!value) {
       this.#error(401, "Les champs ne doivent pas être vides.");
     }
-    if (
-      key == "email" &&
-      !/^[a-zA-Z0-9_\.]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,4}$/.test(value)
-    ) {
-      this.#error(401, "Veuillez entrer un email valide");
-    }
     if (value.length <= 10) {
-      this.#error(
-        401,
-        "L'email et le message doivent faire minimum 10 caractères."
-      );
+      this.#error(401, "Les champs doivent faire minimum 10 caractères.");
     }
   }
   #sanitizeString(key, value) {
