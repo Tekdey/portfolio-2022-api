@@ -1,6 +1,7 @@
 const axios = require("axios");
 const express = require("express");
 const app = express();
+const cors = require("cors");
 const { sendMail } = require("./nodemailer");
 const Manager = require("./manager");
 require("dotenv").config();
