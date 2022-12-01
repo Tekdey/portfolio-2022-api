@@ -28,7 +28,7 @@ module.exports = class {
     }
   }
   #sanitizeString(key, value) {
-    const str = value.replace(/[^a-z0-9áéíóúñü \.,_-]/gim, "");
+    const str = value.replace(/[^a-z0-9áéíóúñü \.,_\-\@]/gim, "");
     this.$object = { ...this.$object, [key]: str };
     this.#_validation(key, str);
   }

@@ -21,10 +21,10 @@ module.exports = {
       html: `
           <h2>Coordonnées :</h2>
           <ul>
-            <li><b>email:</b> ${param.email}</li>
+            <li><b>email:</b> ${param.fullname}</li>
           </ul>
           <h2>Message :</h2>
-          <p>${param.message}</p>
+          <p>${param.description}</p>
           `,
     };
 
